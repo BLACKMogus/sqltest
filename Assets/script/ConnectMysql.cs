@@ -9,7 +9,6 @@ using System.Collections;
 public class ConnectMysql : MonoBehaviour {
     string constr = "server=120.78.152.25;Database=blackmogus;User Id=root;password=victory03131";
     MySqlConnection mycon;//连接数据库
-    bool ischeck;
     string title;
     string content;
     public  Dropdown selectoption;
@@ -19,7 +18,6 @@ public class ConnectMysql : MonoBehaviour {
     void Start () {
     mycon  = new MySqlConnection(constr); //建立连接  
     mycon.Open();
-        ischeck = false;
       
     }
 	
@@ -56,20 +54,7 @@ public class ConnectMysql : MonoBehaviour {
     {
      
 
-            //  string A = "select";
-            //  string B = "from book inner join catalog on book.id=catalog.id";
-            //  string C;
-            //if (selectclass.captionText.text=="ALL")
-            //  {
-            //     C = "*";
-            //  }
-            //else
-            //  {
-            //     C = selectclass.captionText.text;
-            //  }
-
-            //  string selstr = A + C+B;
-
+     
             string selstr ;
             string input = searchcontent.text;
             switch(selectoption.value)
@@ -227,15 +212,7 @@ public class ConnectMysql : MonoBehaviour {
   
     }
 
-    public InputField id;
-    public InputField bname;
-    public InputField subject;
-    public InputField page;
-    public InputField clycle;
-    public InputField factor;
-    public InputField web;
-    public InputField remark;
-    public InputField intro;
+
     public void ButtonInsert()
     {
         string selstr = "insert into catalog values ('" + id.text + "','" + bname.text + "','" + subject.text + "','" + page.text + "')";
@@ -243,26 +220,17 @@ public class ConnectMysql : MonoBehaviour {
         DataSet ds = new DataSet();
         MySqlDataAdapter da = new MySqlDataAdapter(selstr, mycon);
         da.Fill(ds);
-        //    string selstr2 = "insert into book values('" + bname.text + "','" + clycle.text + "','" + factor.text + "','" + web.text + "','" + remark.text + "','" + intro.text +
-        //                   "')";
-        //    string selstr2 = "update book set bname=" + "'" + bname.text + "',cycle='" + clycle.text + "',factor='" + factor.text + "',web='" + web.text + "',remark='" + remark.text
-        //                        + "',introduction='" + intro.text + "'";
-        //    MySqlCommand myselect2 = new MySqlCommand(selstr2, mycon);
-        //MySqlDataAdapter da = new MySqlDataAdapter(selstr2, mycon);
-        //da.Fill(ds);
+
 
     }
     public void ButtonInsert2()
     {
-        //    string selstr = "insert into catalog values('" + id.text + "','" + bname.text + "','" + subject.text + "','" + page.text + "')";
-        //    MySqlCommand myselect = new MySqlCommand(selstr, mycon);//向数据库输入语句
+
         DataSet ds = new DataSet();
-        //    MySqlDataAdapter da = new MySqlDataAdapter(selstr, mycon);
-        //  StartCoroutine("insert");
+
         string selstr2 = "insert into book values ('" + bname.text + "','" + clycle.text + "','" + factor.text + "','" + web.text + "','" + remark.text + "','" + intro.text +
                        "')";
-        //string selstr2 = "update book set bname=" + "'" + bname.text + "',cycle='" + clycle.text + "',factor='" + factor.text + "',web='" + web.text + "',remark='" + remark.text
-        //                    + "',introduction='" + intro.text + "'";
+
         MySqlCommand myselect2 = new MySqlCommand(selstr2, mycon);
         MySqlDataAdapter da = new MySqlDataAdapter(selstr2, mycon);
         da.Fill(ds);
